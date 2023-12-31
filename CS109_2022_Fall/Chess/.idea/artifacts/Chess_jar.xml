@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact name="Chess:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Chess_jar</output-path>
+    <root id="root">
+      <element id="archive" name="Chess.jar">
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/../META-INF/MANIFEST.MF" />
+        </element>
+        <element id="module-output" name="Chess" />
+      </element>
+      <element id="library" level="project" name="google.code.gson" />
+      <element id="library" level="project" name="flatlaf-3.0" />
+    </root>
+  </artifact>
+</component>

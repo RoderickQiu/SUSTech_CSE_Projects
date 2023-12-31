@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exe4j version="8.0.1" transformSequenceNumber="3">
+  <directoryPresets config="//Mac/Home/Documents/chess/Chess/out/artifacts/Chess_jar" />
+  <application name="Fanfanqi" distributionSourceDir="C:/Users/r/Documents/fanfanqi" />
+  <executable name="fanfanqi" wrapperType="embed" iconSet="true" iconFile="//Mac/Home/Documents/chess/Chess/Resources/fanfanqi.ico" executableDir="." redirectStdout="true" executableMode="gui" />
+  <java mainClass="Chess.Main" preferredVM="client" minVersion="17" maxVersion="19" allowBetaVM="true">
+    <searchSequence>
+      <directory location="./jre" />
+      <registry />
+      <envVar name="JAVA_HOME" />
+      <envVar name="JDK_HOME" />
+    </searchSequence>
+    <classPath>
+      <archive location="//Mac/Home/Documents/chess/Chess/out/artifacts/Chess_jar/Chess.jar" failOnError="false" />
+      <archive location="//Mac/Home/Documents/chess/Chess/out/artifacts/Chess_jar/gson-2.10.jar" failOnError="false" />
+      <archive location="//Mac/Home/Documents/chess/Chess/out/artifacts/Chess_jar/flatlaf-3.0.jar" failOnError="false" />
+    </classPath>
+  </java>
+</exe4j>

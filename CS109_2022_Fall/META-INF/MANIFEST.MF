@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: Chess.Main
+Class-Path: gson-2.10.jar flatlaf-3.0.jar
+
