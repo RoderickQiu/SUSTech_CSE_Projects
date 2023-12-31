@@ -1,0 +1,28 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+#main, #main-row, #dialog-box, #dialog-row {
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-width: 800px) {
+    .example-img {
+        width: 100px;
+    }
+}
+
+@media (max-width: 800px) {
+    .example-img {
+        width: 100%;
+    }
+}
+
+@media (max-height: 600px) {
+    #test-img-frame img {
+        max-height: 270px;
+        width: auto;
+    }
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>感谢参与！</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="res/jquery-3.6.1.slim.min.js"></script>
+    <link href="res/bootstrap.min.css" rel="stylesheet"/>
+    <link href="style.css" rel="stylesheet"/>
+    <script src="res/av-min.js"></script>
+    <script src="res/md5.js"></script>
+</head>
+<body>
+<div id="main" class="container-fluid">
+    <script>
+        AV.init({
+            appId: "mofJszpjDnu9faFup8n9N4kB-MdYXbMMI",
+            appKey: "bILwiIwcVlJry6a9qHYdvnFi",
+            serverURL: "https://cogapi.r-q.name"
+        });
+
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return "";
+        }
+
+        let hasFailed = false;
+
+        try {
+            let score = Number(getQueryString("score"));
+            let age = Number(getQueryString("age"));
+            let gender = Number(getQueryString("gender"));
+            let list = JSON.parse(getQueryString("list"));
+            let integrity = getQueryString("integrity");
+
+            if ((hex_md5(score + " " + age + " " + gender + " " + list.length).substring(0, 12) === integrity)) {
+                const Data = AV.Object.extend('Data');
+                const data = new Data();
+
+                data.set('score', score);
+                data.set('age', age);
+                data.set('gender', gender);
+                data.set('list', list);
+
+                data.save().then((todo) => {
+                    console.log(`保存成功。data：${data}`);
+                }, (error) => {
+                    console.log("ERR: " + error);
+                });
+            } else {
+                hasFailed = true;
+                alert("数据异常，可能已被篡改");
+                console.log(score + " " + age + " " + gender + " " + list.length);
+                console.log(integrity);
+            }
+        } catch (e) {
+            hasFailed = true;
+            console.log("ERR: " + e);
+            alert("数据异常，可能已被篡改");
+        }
+    </script>
+    <div id="main-row" class="row align-items-center">
+        <div class="col-2"></div>
+        <div class="col-8 text-center">
+            <h1>🤝 感谢参加测试 🤝</h1><br/>
+            <p id="score">
+                <script>
+                    if (!hasFailed)
+                        document.write("你的分数是：" + getQueryString("score") + "，还挺好的喔！再次感谢！");
+                    else
+                        document.write("数据异常，可能已被篡改 😭");
+                </script>
+            </p>
+            <br/>
+            <a type="button" class="btn btn-secondary btn-lg" href="test.html">重新测试</a>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+</body>
+</html>

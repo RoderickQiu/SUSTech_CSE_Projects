@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>负启动效应测试中……</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="res/jquery-3.6.1.slim.min.js"></script>
+    <link href="res/bootstrap.min.css" rel="stylesheet"/>
+    <link href="style.css" rel="stylesheet"/>
+    <script src="res/md5.js"></script>
+</head>
+<body>
+<div id="dialog-box" class="container-fluid">
+    <div id="dialog-row" class="row align-items-center">
+        <div class="col-2">
+        </div>
+        <div class="col-8 text-center">
+            <h1>具体规则</h1><br/>
+            <div>
+                下面展示的图片中，你将会看到多个字号比较小的数字拼成一个字号比较大的数字。
+                <br/><br/>根据"大数字""小数字"的提示，在键盘上输入正确的键<b>（大数字是指整体形状组成的数字，小数字则是指每个组成形状的各个小数字）</b>。触屏设备则可以点击0、1、2、3、4按钮进行选择。<br/><br/>
+                <b>此外，每轮测试必须在3.75秒内完成，否则将判为超时。</b><br/><br/>
+                示例图片：<br/>
+                <div class="row">
+                    <div class="col"><img src="img/0/1.png" class="example-img"/></div>
+                    <div class="col"><img src="img/3/4.png" class="example-img"/></div>
+                </div>
+                <div class="row">
+                    <div class="col small">大数字 0，小数字 1</div>
+                    <div class="col small">大数字 3，小数字 4</div>
+                </div>
+            </div>
+            <br/>
+            <a type="button" class="btn btn-primary btn-lg" href="javascript:start()">好的</a>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+<div id="main" class="container-fluid" style="display:none;">
+    <div id="main-row" class="row align-items-center">
+        <div class="col-md-2 align-self-start">
+            <br/>&nbsp;
+            <a type="button" class="btn" href="index.html">< 返回</a>
+        </div>
+        <div class="col-md-8 text-center">
+            <h2 id="test-which"></h2><br/>
+            <h1 class="display-1" id="placeholder">*</h1>
+            <div id="test-img-frame"></div>
+            <br/>
+            <p id="correct" style="color:GREEN; display: none">正确的</p>
+            <p id="wrong" style="color:RED; display: none">错误的</p>
+            <p id="time-limit" style="color:BROWN; display: none">超时</p>
+            <p id="time-use" class="small"></p>
+            <a type="button" class="btn btn-secondary" id="sel0">0</a>&nbsp;&nbsp;
+            <a type="button" class="btn btn-secondary" id="sel1">1</a>&nbsp;&nbsp;
+            <a type="button" class="btn btn-secondary" id="sel2">2</a>&nbsp;&nbsp;
+            <a type="button" class="btn btn-secondary" id="sel3">3</a>&nbsp;&nbsp;
+            <a type="button" class="btn btn-secondary" id="sel4">4</a>
+        </div>
+        <div class="col-md-2 align-self-start text-end">
+            <br/>
+            <span id="cnt">轮次：0 / 25</span>&nbsp;
+            <br/>
+            <span id="score" style="font-size: larger">分数：0</span>&nbsp;
+        </div>
+    </div>
+</div>
+
+<script>
+    var images = [];
+
+    function preload() {
+        for (i = 0; i < preload.arguments.length; i++) {
+            images[i] = new Image();
+            images[i].src = preload.arguments[i];
+        }
+    }
+
+    preload(
+        "img/0/1.png", "img/0/1.png", "img/0/2.png", "img/0/3.png", "img/0/4.png",
+        "img/1/0.png", "img/1/0.png", "img/1/2.png", "img/1/3.png", "img/1/4.png",
+        "img/2/0.png", "img/2/1.png", "img/2/1.png", "img/2/3.png", "img/2/4.png",
+        "img/3/0.png", "img/3/1.png", "img/3/2.png", "img/3/2.png", "img/3/4.png",
+        "img/4/0.png", "img/4/1.png", "img/4/2.png", "img/4/3.png", "img/4/3.png"
+    )
+</script>
+
+<script>
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return "";
+    }
+
+    let smallNum = 0, bigNum = 0, which = false, trueNum = 0, time = 0, cnt = 0, score = 0;
+    let gender = Number(getQueryString("gender")), age = Number(getQueryString("age"));
+    let integrity = "", list = [], whichLegible = "";
+
+    function start() {
+        $("#dialog-box").css("display", "none");
+        $("#main").css("display", "block");
+        nextStep()
+    }
+
+    function tleCommit(record, time) {
+        $("#time-limit").css("display", "block");
+
+        record.push(time);
+        record.push("tle");
+        console.log(record)
+        list.push(record);
+    }
+
+    function trueCommit(record, time) {
+        $("#correct").css("display", "block");
+        score++;
+        $("#score").text("分数：" + score);
+
+        record.push(time);
+        record.push("correct");
+        console.log(record)
+        list.push(record);
+    }
+
+    function falseCommit(record, time) {
+        $("#wrong").css("display", "block");
+
+        record.push(time);
+        record.push("wrong");
+        console.log(record)
+        list.push(record);
+    }
+
+    function nextStep() {
+        time = new Date().getTime();
+
+        smallNum = Math.floor(Math.random() * 5);
+        bigNum = Math.floor(Math.random() * 5);
+        which = Math.floor(Math.random() * 2) === 0;
+        whichLegible = which ? "Big" : "Small";
+
+        while (smallNum === bigNum) {
+            smallNum = Math.floor(Math.random() * 5);
+        }
+        trueNum = which ? bigNum : smallNum;
+
+        setTimeout(function () {
+            $("#placeholder").css("display", "none");
+            $("#test-img-frame").html(images[bigNum * 5 + smallNum]);
+            $("#test-which").text(which ? "大数字" : "小数字");
+            $("#correct").css("display", "none");
+            $("#wrong").css("display", "none");
+            $("#time-limit").css("display", "none");
+            $("#time-use").text("");
+            console.log(bigNum + " " + smallNum);
+
+            if (cnt >= 25) {
+                integrity = hex_md5(score + " " + age + " " + gender + " " + list.length).substring(0, 12);
+                location.href = "end.html?score=" + score + "&gender=" + gender + "&age=" + age + "&integrity=" + integrity + "&list=" + JSON.stringify(list);
+            }
+
+            document.onkeypress = function () {
+                let trueList = [48, 49, 50, 51, 52];
+                if (new Date().getTime() - time > 3750) tleCommit([smallNum, bigNum, whichLegible, trueNum], new Date().getTime() - time);
+                else if (event.keyCode === trueList[trueNum]) trueCommit([smallNum, bigNum, whichLegible, trueNum], new Date().getTime() - time);
+                else falseCommit([smallNum, bigNum, whichLegible, trueNum], new Date().getTime() - time);
+                $("#time-use").text("用时：" + (new Date().getTime() - time));
+                cnt++;
+                $("#cnt").text("轮次：" + cnt + " / 25");
+                nextStep();
+            }
+
+            function sel(id) {
+                if (new Date().getTime() - time > 4000) tleCommit([smallNum, bigNum, whichLegible, trueNum], new Date().getTime() - time);
+                else if (trueNum === id) trueCommit([smallNum, bigNum, whichLegible, trueNum], new Date().getTime() - time);
+                else falseCommit([smallNum, bigNum, whichLegible, trueNum], new Date().getTime() - time);
+                $("#time-use").text("用时：" + (new Date().getTime() - time));
+                cnt++;
+                $("#cnt").text("轮次：" + cnt + " / 25");
+                nextStep();
+                return 0;
+            }
+
+            document.getElementById("sel0").onclick = function () {
+                sel(0);
+            }
+            document.getElementById("sel1").onclick = function () {
+                sel(1);
+            }
+            document.getElementById("sel2").onclick = function () {
+                sel(2);
+            }
+            document.getElementById("sel3").onclick = function () {
+                sel(3);
+            }
+            document.getElementById("sel4").onclick = function () {
+                sel(4);
+            }
+        }, 500);
+    }
+</script>
+</body>
+</html>

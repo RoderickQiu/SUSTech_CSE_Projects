@@ -8,6 +8,8 @@ By Roderick Qiu @SUSTech.
 
 # Fall 2022
 
+[CS106 Intro to Cognitive Science](https://github.com/RoderickQiu/SUSTech_CSE_Projects/tree/main/CS106_2022_Fall)
+
 [CS109 Intro to Programming in Java](https://github.com/RoderickQiu/SUSTech_CSE_Projects/tree/main/CS109_2022_Fall)
 
 # Fall 2023

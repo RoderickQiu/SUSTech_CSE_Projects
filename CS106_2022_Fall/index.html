@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>认知科学小程序：负启动效应！</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="res/jquery-3.6.1.slim.min.js"></script>
+    <link href="res/bootstrap.min.css" rel="stylesheet"/>
+    <link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="main" class="container-fluid">
+    <div id="main-row" class="row align-items-center">
+        <div class="col-1"></div>
+        <div class="col-10 text-center">
+            <h1>认知科学小实验：负启动效应</h1><br/>
+            <div>
+                这是我们认知科学导论期末项目的一部分，感谢参与🙏。之前的一些问题目前已经修复。<br/>
+                这个小实验不需要任何的准备，只需要全神贯注的一分钟🙏。<br/>
+                你将看到由许多较小的数字组成的较大的数字，请根据指令选择你看到的大数字或小数字是什么。<br/>
+            </div>
+            <br/>
+            <a type="button" class="btn btn-primary btn-lg" href="javascript:dialogBox()">现在开始</a>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>
+<div id="dialog-box" class="container-fluid">
+    <div id="dialog-row" class="row align-items-center">
+        <div class="col-2">
+        </div>
+        <div class="col-8 text-center">
+            <h1>开始之前</h1><br/>
+            <p>处于统计目的，我们将收集你的性别和年龄。你可以选"不填"，但请不要填像 123456 这样，谢谢 🙏</p>
+            <select class="form-select" id="gender-select" aria-label="Select Your Gender">
+                <option value="-1" selected>请选择性别（不想透露请选"不填")</option>
+                <option value="1">男</option>
+                <option value="2">女</option>
+                <option value="0">不填</option>
+            </select><br/>
+            <input class="form-control" type="number" id="age-select" placeholder="请输入年龄（不想透露请输入 0）"/>
+            <br/>
+            <a type="button" class="btn btn-primary btn-lg" href="javascript:finish()">我填完了</a>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+
+<script>
+    $("#dialog-box").css("display", "none");
+
+    function dialogBox() {
+        $("#main").css("display", "none");
+        $("#dialog-box").css("display", "block");
+    }
+
+    function finish() {
+        let gender = Number($('#gender-select option:selected').val()), age = Number($("#age-select").val()).toFixed(0);
+        console.log(gender + " gender")
+        console.log(Number(age).toFixed(0) + " age");
+
+        if (gender === -1 || age < 0) {
+            alert("你还没填完基本信息呢！");
+        } else location.href = "test.html?age=" + age + "&gender=" + gender;
+    }
+</script>
+</body>
+</html>
