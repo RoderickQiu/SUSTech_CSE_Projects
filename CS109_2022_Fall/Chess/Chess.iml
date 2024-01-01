@@ -7,7 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="google.code.gson" level="project" />
-    <orderEntry type="library" exported="" name="flatlaf-3.0" level="project" />
+    <orderEntry type="library" name="formdev.flatlaf" level="project" />
+    <orderEntry type="library" name="google.code.gson" level="project" />
   </component>
 </module>

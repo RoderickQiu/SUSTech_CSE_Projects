@@ -8,8 +8,6 @@
         </element>
         <element id="module-output" name="Chess" />
       </element>
-      <element id="library" level="project" name="google.code.gson" />
-      <element id="library" level="project" name="flatlaf-3.0" />
     </root>
   </artifact>
 </component>
