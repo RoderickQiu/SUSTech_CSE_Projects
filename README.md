@@ -18,6 +18,8 @@ By Roderick Qiu @SUSTech.
 
 Will be fully updated once the semester is over.
 
-[CS205 C/C++ Programming: Global Transcoder for WAV/FLAC/AIFF Data](https://github.com/RoderickQiu/gtwd-CS205-C-CPP)
+[CS103 Intro to Artificial Intelligence: Collection and Visualization of COVID-19 Social Memory](https://newshub.sustech.edu.cn/html/202401/44789.html)
 
-[CS207 Digital Design: No Genshin Minipiano](https://github.com/Charley-xiao/No-Genshin) (120.75/100)
+[CS205 C/C++ Programming: Global Transcoder for WAV/FLAC/AIFF Data](https://github.com/RoderickQiu/gtwd-CS205-C-CPP) (110+/100)
+
+[CS207 Digital Design: No Genshin Minipiano](https://github.com/Charley-xiao/No-Genshin) (120.75+/100)
