@@ -28,4 +28,4 @@ By Roderick Qiu @SUSTech.
 
 [CS307 Principles of Database System: Project 1 - DB Design and Import Tricks](https://github.com/Dilemma-CMZ/CS307-Project1) (101/100)
 
-[CS307 Principles of Database System: Project 2 - Metro Management System[(https://github.com/RoderickQiu/CS307-Project2) (105/100)
+[CS307 Principles of Database System: Project 2 - Metro Management System](https://github.com/RoderickQiu/CS307-Project2) (105/100)
