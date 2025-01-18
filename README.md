@@ -31,3 +31,9 @@ By Roderick Qiu @SUSTech.
 [CS307 Principles of Database System: Project 1 - DB Design and Import Tricks](https://github.com/Dilemma-CMZ/CS307-Project1) (101/100, *highest*)
 
 [CS307 Principles of Database System: Project 2 - Metro Management System](https://github.com/RoderickQiu/CS307-Project2) (105/100, *highest*)
+
+# Fall 2024-25
+
+[CS305 Computer Network: Online Conference Server and Client](https://github.com/RoderickQiu/CS305-Project) (110+/100, *highest*)
+
+[CS309 Object-Oriented Analysis and Design: LLM Client](https://github.com/SUSTech-NINJA/ninja) (97/100)
