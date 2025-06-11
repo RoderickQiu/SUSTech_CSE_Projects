@@ -37,3 +37,7 @@ By Roderick Qiu @SUSTech.
 [CS305 Computer Network: Online Conference Server and Client](https://github.com/RoderickQiu/CS305-Project) (110+/100, *highest*)
 
 [CS309 Object-Oriented Analysis and Design: LLM Client](https://github.com/SUSTech-NINJA/ninja) (97/100)
+
+# Spring 2024-25
+
+[CS304 Software Engineering: Peach IDE](https://github.com/sustech-cs304/team-project-25spring-2) (38.55/35, *highest*)
