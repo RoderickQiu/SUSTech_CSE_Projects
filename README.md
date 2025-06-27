@@ -41,3 +41,7 @@ By Roderick Qiu @SUSTech.
 # Spring 2024-25
 
 [CS304 Software Engineering: Peach IDE](https://github.com/sustech-cs304/team-project-25spring-2) (38.55/35, *highest*)
+
+[CS306 Data Mining: Final Thesis - Explainable AI Survey](https://github.com/RoderickQiu/SUSTech_CSE_Projects/tree/main/CS306_2025_Spring) (15/15, *highest*)
+
+[CS306 Data Mining: Final Project - Learning Recommendation](https://github.com/RoderickQiu/data-mining-project) (37.2/40)
